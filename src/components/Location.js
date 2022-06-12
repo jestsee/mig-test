@@ -32,7 +32,7 @@ export default function Location() {
 
 function LocationItem({icon, count, subtitle, color}) {
   return (
-    <div className={`bg-${color} text-white p-5 flex justify-between`}>
+    <div className={`bg-${color} text-white p-5 flex justify-between cursor-pointer`}>
       <i className="">{icon}</i>
       <div className="text-right">
         <h1 className="font-bold text-3xl">{count}</h1>

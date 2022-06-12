@@ -5,8 +5,9 @@ export default function BankAccount() {
   return (
     <div className="pt-[1.7vw] px-[1.7vw]">
       <div className="mb-[1.5vw] flex justify-between">
-        <p className="font-bold text-lg">BankAccount</p>
-        <button className="bg-primary text-white text-sm rounded py-[8px] px-6 flex"><BsPlusLg className="mr-4 mt-1" size='13'/>Tambah Akun Bank</button>
+        <p className="font-bold text-lg">Akun Bank</p>
+        <button className="bg-primary text-white text-sm rounded py-[8px] px-6 flex"><BsPlusLg className="mr-4 mt-1" size='13'/>Tambah Akun Bank
+        </button>
       </div>
       <BankAccountItem
         gradient="from-yellow-500 to-slate-500"
