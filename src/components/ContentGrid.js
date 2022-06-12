@@ -6,8 +6,8 @@ import Relation from "./Relation";
 
 export default function ContentGrid() {
   return (
-    <div className="ml-[5.8rem] mt-[2.5rem] pb-[2.5rem] mr-5">
-      <div className="grid overflow-hidden grid-cols-3 grid-rows-3 gap-9">
+    <div className="ml-[6rem] mt-[2.5rem] pb-[2.5rem] mr-7">
+      <div className="grid overflow-hidden grid-cols-[auto] grid-rows-[auto] gap-9">
         <div className="box row-span-6"><MitramasInfo/></div>
         <div className="box col-start-2 col-span-2"><Location/></div>
         <div className="box row-span-0 col-start-2 col-span-1"><BankAccount/></div>

@@ -2,7 +2,7 @@ import { FiShare2 } from "react-icons/fi";
 
 export default function Relation() {
   return (
-    <div className="pt-[1.7vw] px-[1.7vw]">
+    <div className="pt-[1.7vw] px-[1.7vw] mb-[3vw]">
       <div className="flex justify-between">
         <div className="font-bold text-lg mb-[1.4vw]"><p>Relasi</p></div>
         <a className="text-primary" href="#">Lihat semua</a>

@@ -30,8 +30,8 @@ export default function MitramasInfo() {
 
         <div className="mt-10 mb-16">
           <div className="grey-title"><p>Status Perusahaan</p></div>
-          <div className={!active ? "text-primary text-sm font-bold flex justify-between" : "text-gray-600 text-sm font-bold flex justify-between"}>
-            <p>{active ? "Nonaktif" : "Aktif"}</p>
+          <div className={!active ? "text-gray-600 text-sm font-bold flex justify-between" : "text-primary text-sm font-bold flex justify-between"}>
+            <p>{!active ? "Nonaktif" : "Aktif"}</p>
             <label className="relative cursor-pointer">
               <input type="checkbox" value="" id="green-toggle" className="sr-only peer"
               defaultChecked={active} onChange={handleToggle}/>
