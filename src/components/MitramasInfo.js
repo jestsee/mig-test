@@ -20,7 +20,7 @@ export default function MitramasInfo() {
       
       <div className="p-[1.7vw] mt-16">
         <div className="text-center">
-          <div className="font-bold"><p>Mitramas Infosys Global</p></div>
+          <div className="font-bold text-lg"><p>Mitramas Infosys Global</p></div>
           <div className="grey-title mb-5"><p>Layanan IT</p></div>
           <div className="text-primary font-semibold text-xs">
             <i className="inline-flex mr-2"><FiEdit2/></i>
