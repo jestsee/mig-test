@@ -4,8 +4,7 @@ import ContentGrid from './components/ContentGrid';
 
 function App() {
   return (
-    <div /* className='flex' */>
-      <p className='text-green-800 text-center'>Hello!</p>
+    <div>
       <Sidebar/>
       <ContentGrid/>
     </div>

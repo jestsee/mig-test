@@ -2,21 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-.box {
-	@apply
-  bg-indigo-700
-  text-gray-100
-  min-w-full
-  h-32
-  min-h-full
-  rounded;
-}
-
 @layer components {
   .sidebar-icon {
     @apply 
     relative flex items-center justify-center
     h-12 w-12 mt-2 mb-2 mx-auto
     hover:bg-greenbg hover:border-l-4 hover:border-primary hover:w-full;
+  }
+
+  body {
+    @apply
+    h-screen bg-greenbg;
+  }
+
+  .box {
+    @apply
+    bg-white text-black
+    min-h-full min-w-full h-32
+    rounded;
   }
 }
