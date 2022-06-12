@@ -18,7 +18,17 @@
   .box {
     @apply
     bg-white text-black
-    min-h-full min-w-full h-32
-    rounded;
+    min-h-full min-w-full /* h-32 */
+    rounded-md shadow-lg;
+  }
+
+  .grey-title {
+    @apply
+    text-[grey] text-xs my-1;
+  }
+
+  .casual-black-text {
+    @apply
+    text-black text-sm mb-4;
   }
 }
