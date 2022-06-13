@@ -1,6 +1,6 @@
 export default function Activity() {
   return (
-    <div className="pt-[1.7vw] px-[1.7vw]">
+    <div className="p-[2.7vw]">
       <div className="font-bold text-lg mb-[1.7vw]"><p>Aktivitas</p></div>
       {
         ActivityData.map((item, index) => {

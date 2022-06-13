@@ -13,12 +13,12 @@ export default function MitramasInfo() {
     <div>
       {/* banner & img*/}
       <div className="relative left-1/2 w-[7rem]">
-        <img className="absolute top-[4.5rem] -left-1/2 bg-white rounded-full border-[1px] border-paleGreen p-2.5"
-        src="https://media-exp2.licdn.com/dms/image/C510BAQGoqPOqFFYp0g/company-logo_200_200/0/1583912202955?e=1663200000&v=beta&t=90pP728B15IJXqXrtAgkP5yi1cUW4aP6k5eCVx012J4"></img>
+        <img className="absolute top-[4.5rem] -left-1/2 bg-white rounded-full border-[3px] border-greenbg p-2.5"
+        src="https://media-exp2.licdn.com/dms/image/C510BAQGoqPOqFFYp0g/company-logo_200_200/0/1583912202955?e=1663200000&v=beta&t=90pP728B15IJXqXrtAgkP5yi1cUW4aP6k5eCVx012J4" alt='company logo'></img>
       </div>
       <div className="bg-primary w-full h-[8rem] rounded-t"></div>
       
-      <div className="p-[1.7vw] mt-16">
+      <div className="p-[2.7vw] mt-16">
         <div className="text-center">
           <div className="font-bold text-lg"><p>Mitramas Infosys Global</p></div>
           <div className="grey-title mb-5"><p>Layanan IT</p></div>

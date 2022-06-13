@@ -19,7 +19,8 @@
     @apply
     bg-white text-black
     min-h-full min-w-full
-    rounded-md shadow-lg;
+    rounded-lg shadow-lg
+    my-5;
   }
 
   .grey-title {
