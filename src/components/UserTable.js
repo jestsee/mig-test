@@ -1,6 +1,7 @@
 import { Component} from 'react'
 import { COLUMNS } from './UserTableColumn';
-import dummy_data from './dummy_data.json'
+import { FaSortAlphaUp, FaSortAlphaDown } from "react-icons/fa";
+import { TiArrowUnsorted } from "react-icons/ti";
 import UserDataService from '../services/service'
 
 export default class UserTable extends Component {
@@ -19,6 +20,9 @@ export default class UserTable extends Component {
       currentData: null,
       currentIndex: -1,
       searchData: "",
+
+      sortField: "",
+      order: "asc",
     };
   }
 
@@ -38,7 +42,7 @@ export default class UserTable extends Component {
       .then(response => {
         this.setState({
           isLoaded: true,
-          users: response.data
+          users: response.data.data
         });
         console.log("DATA: ", response.data);
       },
@@ -69,6 +73,32 @@ export default class UserTable extends Component {
     // UserDataService.f
   }
 
+  handleSortingChange(accessor) {
+    const sortOrder = accessor === this.state.sortField 
+      && this.state.order === "asc" ? "desc" : "asc";
+    console.log("sort type: ", sortOrder);
+    this.setState({
+      sortField: accessor,
+      order: sortOrder,
+    })
+    this.handleSorting(accessor, sortOrder)
+  }
+
+  handleSorting(sortField, sortOrder) {
+    if (sortField) {
+      // console.log("USERS: ",this.state.users);
+      const sorted = [...this.state.users].sort((a,b) => {
+        return (
+          a[sortField].toString().localeCompare(b[sortField].toString(), "en", {
+            numeric: true,
+           }) * (sortOrder === "asc" ? 1 : -1)
+        )
+      })
+      console.log("SORTED: ",sorted);
+      this.setState({users: sorted})
+    }
+  }
+
   render() {
     const {error, isLoaded, searchData, users, currentData, currentIndex} = this.state;
     var temp = null;
@@ -83,18 +113,28 @@ export default class UserTable extends Component {
           <thead>
             <tr>
               {COLUMNS.map((val) => {
+                const cl = val.sortable
+                ? this.state.sortField && this.state.sortField === val.accessor && this.state.order === "asc"
+                 ? <FaSortAlphaDown className='inline-flex'/>
+                 : this.state.sortField && this.state.sortField === val.accessor && this.state.order === "desc"
+                 ? <FaSortAlphaUp className='inline-flex'/>
+                 : <TiArrowUnsorted className='inline-flex'/>
+                : "";
                 return (
-                  <th key={val.accessor}>{val.header}</th>
+                  <th key={val.accessor} 
+                    onClick={val.sortable ? ()=>this.handleSortingChange(val.accessor): null}>
+                    {cl}{val.header}
+                  </th>
                 )
                 })
               }
             </tr>
           </thead>
           <tbody>
-            {users.data.map((val) => {
+            {users.map((val) => {
               return (
                 <tr key={val.id}>
-                  <td>{val.id}</td>
+                  {/* <td>{val.id}</td> */}
                   <td>{val.name}</td>
                   <td>{val.address}</td>
                   <td>{val.country}</td>

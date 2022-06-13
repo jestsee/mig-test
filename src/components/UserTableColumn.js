@@ -1,9 +1,9 @@
 export const COLUMNS = [
-  {
-    header: 'ID',
-    accessor: 'id',
-    sortable: false,
-  },
+  // {
+  //   header: 'ID',
+  //   accessor: 'id',
+  //   sortable: false,
+  // },
   {
     header: 'Name',
     accessor: 'name',
