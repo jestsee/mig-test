@@ -4,7 +4,7 @@ import { TbBuildingWarehouse } from "react-icons/tb";
 
 export default function Location() {
   return (
-    <div className="p-[2.7vw]">
+    <div className="p-[2vw]">
         <div className="font-bold text-lg mb-[1.5vw]"><p>Lokasi</p></div>
         <div className="inline-grid grid-cols-3 w-full gap-4">
           <LocationItem

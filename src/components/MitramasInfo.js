@@ -18,7 +18,7 @@ export default function MitramasInfo() {
       </div>
       <div className="bg-primary w-full h-[8rem] rounded-t"></div>
       
-      <div className="p-[2.7vw] mt-16">
+      <div className="p-[2vw] mt-16">
         <div className="text-center">
           <div className="font-bold text-lg"><p>Mitramas Infosys Global</p></div>
           <div className="grey-title mb-5"><p>Layanan IT</p></div>
