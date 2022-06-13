@@ -3,6 +3,7 @@ import { COLUMNS } from './UserTableColumn';
 import { FaSortAlphaUp, FaSortAlphaDown } from "react-icons/fa";
 import { TiArrowUnsorted } from "react-icons/ti";
 import UserDataService from '../services/service'
+import { FiEdit2, FiTrash2 } from "react-icons/fi";
 
 export default class UserTable extends Component {
 
@@ -104,21 +105,21 @@ export default class UserTable extends Component {
       temp = <div>Loading...</div>
     } else {
       temp = (
-      <div>
+      <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
         <table>
-          <thead>
+          <thead className="bg-primary text-white text-left">
             <tr>
               {COLUMNS.map((val) => {
                 const cl = val.sortable
                 ? this.state.sortField && this.state.sortField === val.accessor && this.state.order === "asc"
-                 ? <FaSortAlphaDown className='inline-flex'/>
+                 ? <FaSortAlphaDown className='inline-flex mr-2'/>
                  : this.state.sortField && this.state.sortField === val.accessor && this.state.order === "desc"
-                 ? <FaSortAlphaUp className='inline-flex'/>
-                 : <TiArrowUnsorted className='inline-flex'/>
+                 ? <FaSortAlphaUp className='inline-flex mr-2'/>
+                 : <TiArrowUnsorted className='inline-flex mr-2'/>
                 : "";
                 return (
                   <th key={val.accessor} 
-                    onClick={val.sortable ? ()=>this.handleSortingChange(val.accessor): null}>
+                    onClick={val.sortable ? ()=>this.handleSortingChange(val.accessor): null} className="px-6 py-4">
                     {cl}{val.header}
                   </th>
                 )
@@ -150,16 +151,24 @@ export default class UserTable extends Component {
               .includes(searchData.toString().toLowerCase())
               )).map((val) => {
               return (
-                <tr key={val.id}>
+                <tr key={val.id} className="border-b odd:bg-white even:bg-gray-50">
                   {/* <td>{val.id}</td> */}
-                  <td>{val.name}</td>
-                  <td>{val.address}</td>
-                  <td>{val.country}</td>
-                  <td>{val.phone_number}</td>
-                  <td>{val.job_title}</td>
-                  <td>{val.status ? "active" : "inactive"}</td>
-                  <td>{val.created_at}</td>
-                  <td>{val.updated_at}</td>
+                  <td className="px-6 py-4">{val.name}</td>
+                  <td className="px-6 py-4">{val.address}</td>
+                  <td className="px-6 py-4">{val.country}</td>
+                  <td className="px-6 py-4">{val.phone_number}</td>
+                  <td className="px-6 py-4">{val.job_title}</td>
+                  <td className="px-6 py-4">{val.status ? 
+                  <p className='text-primary font-semibold'>Active</p> : 
+                  <p className='text-[red] font-semibold'>Inactive</p>}</td>
+                  <td className='px-6 py-4'>
+                  <div className="flex">
+                    <i className="text-slate-600 cursor-pointer mr-3"><FiEdit2 size={20}/></i>
+                    <i className="text-[red] cursor-pointer"><FiTrash2 size={20}/></i>
+                  </div>
+                  </td>
+                  {/* <td className="px-6 py-4">{val.created_at}</td>
+                  <td className="px-6 py-4">{val.updated_at}</td> */}
                 </tr>
               )
             })}
@@ -170,6 +179,12 @@ export default class UserTable extends Component {
 
     return (
       <div>
+        <div className="mb-[2vw] flex justify-between">
+          <div>
+            <button className="bg-primary text-white rounded py-[8px] px-[2vw]">
+              Tambah Pengguna
+            </button>
+          </div>
         <div className="flex justify-center">
           <div className="mb-3 xl:w-96">
             <div className="input-group relative flex items-stretch w-full mb-4">
@@ -181,6 +196,7 @@ export default class UserTable extends Component {
               </button>
             </div>
           </div>
+        </div>
         </div>
         {temp}
       </div>

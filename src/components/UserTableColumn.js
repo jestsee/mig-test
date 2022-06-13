@@ -35,13 +35,18 @@ export const COLUMNS = [
     sortable: false,
   },
   {
-    header: 'Created at',
-    accessor: 'created_at',
+    header: 'Action',
+    accessor: null,
     sortable: false,
   },
-  {
-    header: 'Updated at',
-    accessor: 'updated_at',
-    sortable: false,
-  },
+  // {
+  //   header: 'Created at',
+  //   accessor: 'created_at',
+  //   sortable: false,
+  // },
+  // {
+  //   header: 'Updated at',
+  //   accessor: 'updated_at',
+  //   sortable: false,
+  // },
 ]
