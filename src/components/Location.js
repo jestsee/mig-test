@@ -6,7 +6,7 @@ export default function Location() {
   return (
     <div className="p-[2vw]">
         <div className="font-bold text-lg mb-[1.5vw]"><p>Lokasi</p></div>
-        <div className="inline-grid grid-cols-3 w-full gap-4">
+        <div className="inline-grid grid-cols-1 sm:grid-cols-3 w-full gap-4">
           <LocationItem
             icon={<BiBuildingHouse size='60'/>}
             count={20}

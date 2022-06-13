@@ -163,7 +163,7 @@ export default class UserTable extends Component {
                   <p className='text-[red] font-semibold'>Inactive</p>}</td>
                   <td className='px-6 py-4'>
                   <div className="flex">
-                    <i className="text-slate-600 cursor-pointer mr-3"><FiEdit2 size={20}/></i>
+                    <i className="text-primary cursor-pointer mr-3"><FiEdit2 size={20}/></i>
                     <i className="text-[red] cursor-pointer"><FiTrash2 size={20}/></i>
                   </div>
                   </td>
