@@ -31,5 +31,6 @@ const SideBarIcon = ({icon, to}) => {
 const SideBarItem = [
   {
     icon: <BiHomeCircle/>
+
   }
 ]

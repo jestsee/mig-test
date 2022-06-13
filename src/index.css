@@ -12,6 +12,7 @@
 
   body {
     @apply
+    ml-[6rem] mt-[2.5rem] pb-[2.5rem] mr-7
     h-screen bg-greenbg;
   }
 

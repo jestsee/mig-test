@@ -6,7 +6,7 @@ import Relation from "./Relation";
 
 export default function ContentGrid() {
   return (
-    <div className="ml-[6rem] mt-[2.5rem] pb-[2.5rem] mr-7">
+    <div>
       <div className="md:grid md:grid-cols-2
       lg:grid-cols-[auto] grid-rows-[auto] 
       gap-9 overflow-hidden">
