@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useTable, useSortBy, useGlobalFilter, usePagination } from 'react-table';
+import { useTable, useSortBy, useGlobalFilter, usePagination, useRowSelect } from 'react-table';
 import { FaSortAlphaUp, FaSortAlphaDown } from "react-icons/fa";
 import { TiArrowUnsorted } from "react-icons/ti";
 import { UserTableFilter } from './UserTableFilter';
 
-export default function Table({ columns, data }) {
+export default function Table({ columns, data, setSelectedUser, deleteHandler }) {
   const { 
     getTableProps,
     getTableBodyProps,
@@ -27,14 +27,32 @@ export default function Table({ columns, data }) {
   }, 
   useGlobalFilter,
   useSortBy,
-  usePagination)
+  usePagination,
+  useRowSelect)
 
   const { globalFilter } = state
   const { pageIndex, pageSize } = state
+  const [selectedId, setSelectedId] = useState(null)
+
+  const getSelectedData = (row) => {
+    setSelectedId(row.id)
+    setSelectedUser(row.original)
+  }
+
+  const temp = () => {
+    console.log("terpanggil");
+    deleteHandler()
+  }
 
   return (
   <>
-  <UserTableFilter filter={globalFilter} setFilter={setGlobalFilter}/>
+  <div className='flex justify-between'>
+    <UserTableFilter filter={globalFilter} setFilter={setGlobalFilter}/>
+    {selectedId && <div>
+      <button className='p-2'>edit</button>
+      <button className='p-2' onClick={temp}>delete</button>
+    </div>}
+  </div>
   <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
     <table {...getTableProps()}>
       <thead className="bg-primary text-white text-left">
@@ -60,10 +78,11 @@ export default function Table({ columns, data }) {
         }
       </thead>
       <tbody {...getTableBodyProps()}>
-        {page.map(row => {
+        {page.map((row, i) => {
             prepareRow(row)
             return (
-            <tr {...row.getRowProps()} className="border-b odd:bg-white even:bg-gray-50">
+            <tr {...row.getRowProps()} onClick={() => {getSelectedData(row)
+              }} className={selectedId !== row.id ? "border-b odd:bg-white even:bg-gray-50" : "border-2 odd:bg-white even:bg-gray-50 border-paleGreen"}>
               {row.cells.map((cell) => {
                   return <td {...cell.getCellProps()} className="px-6 py-4">{cell.render('Cell')}</td>
                 })}
@@ -90,7 +109,7 @@ export default function Table({ columns, data }) {
       </span>
       <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
         {
-          [10,25,50].map(pageSize => (
+          [5,10,25,50].map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>

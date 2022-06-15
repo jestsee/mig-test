@@ -39,15 +39,15 @@ export const COLUMNS = [
     <p className='text-primary font-semibold'>Active</p> : 
     <p className='text-[red] font-semibold'>Inactive</p>,
   },
-  {
-    Header: 'Action',
-    accessor: null,
-    sortable: false,
-    Cell: <div className="flex">
-    <i className="text-primary cursor-pointer mr-3"><FiEdit2 size={20}/></i>
-    <i className="text-[red] cursor-pointer"><FiTrash2 size={20}/></i>
-  </div>
-  },
+  // {
+  //   Header: 'Action',
+  //   accessor: null,
+  //   sortable: false,
+  //   Cell: <div className="flex">
+  //   <i className="text-primary cursor-pointer mr-3"><FiEdit2 size={20}/></i>
+  //   <i className="text-[red] cursor-pointer"><FiTrash2 size={20}/></i>
+  // </div>
+  // },
   // {
   //   Header: 'Created at',
   //   accessor: 'created_at',

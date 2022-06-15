@@ -8,15 +8,34 @@ class UserDataService {
   getAll() {
     return HttpService.httpService().get('/customers')
   }
-  // create(data) {
-  //   return http.post("/customers")
-  // }
-  // update(id, data) {
-  //   return http.put("/customers")
-  // }
-  // delete(id) {
-  //   return http.delete("/customers")
-  // }
+  create(data) {
+    return HttpService.post("/customers")
+  }
+  update(
+    id, 
+    name, 
+    address, 
+    country, 
+    phone_number, 
+    job_title, 
+    status
+    ) {
+    return HttpService.put("/customers", {
+      id, 
+      name, 
+      address, 
+      country, 
+      phone_number, 
+      job_title, 
+      status
+    })
+  }
+  delete(id) {
+    console.log("delete terpanggil");
+    return HttpService.delete("/customers", {
+      id
+    })
+  }
 }
 
 export default new UserDataService();
