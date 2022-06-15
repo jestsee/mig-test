@@ -1,51 +1,60 @@
+import { FiEdit2, FiTrash2 } from "react-icons/fi";
+
 export const COLUMNS = [
   // {
-  //   header: 'ID',
+  //   Header: 'ID',
   //   accessor: 'id',
   //   sortable: false,
   // },
   {
-    header: 'Name',
+    Header: 'Name',
     accessor: 'name',
     sortable: true,
   },
   {
-    header: 'Address',
+    Header: 'Address',
     accessor: 'address',
     sortable: false,
   },
   {
-    header: 'Country',
+    Header: 'Country',
     accessor: 'country',
     sortable: false,
   },
   {
-    header: 'Phone Number',
+    Header: 'Phone Number',
     accessor: 'phone_number',
     sortable: false,
   },
   {
-    header: 'Job Title',
+    Header: 'Job Title',
     accessor: 'job_title',
     sortable: false,
   },
   {
-    header: 'Status',
+    Header: 'Status',
     accessor: 'status',
     sortable: false,
+    Cell: ({ cell: { value }}) => value ? 
+    <p className='text-primary font-semibold'>Active</p> : 
+    <p className='text-[red] font-semibold'>Inactive</p>,
   },
   {
-    header: 'Action',
+    Header: 'Action',
     accessor: null,
     sortable: false,
+    Cell: <div className="flex">
+    <i className="text-primary cursor-pointer mr-3"><FiEdit2 size={20}/></i>
+    <i className="text-[red] cursor-pointer"><FiTrash2 size={20}/></i>
+  </div>
   },
   // {
-  //   header: 'Created at',
+  //   Header: 'Created at',
   //   accessor: 'created_at',
   //   sortable: false,
   // },
   // {
-  //   header: 'Updated at',
+  //   Header: 'Updated at',
   //   accessor: 'updated_at',
   //   sortable: false,
   // },

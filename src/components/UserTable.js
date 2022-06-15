@@ -4,6 +4,7 @@ import { FaSortAlphaUp, FaSortAlphaDown } from "react-icons/fa";
 import { TiArrowUnsorted } from "react-icons/ti";
 import UserDataService from '../services/service'
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
+import httpService from '../http-service';
 
 export default class UserTable extends Component {
 
@@ -13,11 +14,13 @@ export default class UserTable extends Component {
     this.retrieveData = this.retrieveData.bind(this);
     this.refreshList = this.refreshList.bind(this);
     this.setActiveData = this.setActiveData.bind(this);
+    this.tokenHandler = this.tokenHandler.bind(this);
     this.state = {
       users: [],
-      usersToShow: [],
       error: null,
       isLoaded: false,
+      tokenExpired: false,
+
       currentData: null,
       currentIndex: -1,
       searchData: "",
@@ -41,16 +44,23 @@ export default class UserTable extends Component {
   retrieveData() {
     UserDataService.getAll()
       .then(response => {
-        this.setState({
-          isLoaded: true,
-          users: response.data.data
-        });
-        console.log("DATA: ", response.data);
+        if (response.status == 200) {
+          this.setState({
+            isLoaded: true,
+            users: response.data.data
+          });
+          // console.log("DATA: ", response.data);
+        }
       },
       (error) => {
+        if (error.response.status == 401) {
+          // generate new token then reload
+          console.log("STATUS 401")
+          this.setState({tokenExpired: true})
+        }
         this.setState({
-            isLoaded: true,
-            error: error
+          isLoaded: true,
+          error: error
         })
       })
   }
@@ -96,10 +106,24 @@ export default class UserTable extends Component {
     }
   }
 
+  tokenHandler() {
+    let tokenGenerated = httpService.generateNewToken()
+    if(tokenGenerated) {
+      console.log("masuk token generated");
+      this.setState({tokenExpired: false})
+    } else {
+      console.log("masuk else");
+      this.setState({error: {message: "Something went wrong"}})
+    }
+    // window.location.reload();
+  }
+
   render() {
-    const {error, isLoaded, searchData, users, currentData, currentIndex} = this.state;
+    const {error, isLoaded, tokenExpired, searchData, users, currentData, currentIndex} = this.state;
     var temp = null;
-    if(error) {
+    if(tokenExpired) {
+      temp = <button onClick={this.tokenHandler}>Generate New Token</button>
+    } else if (error) {
       temp = <div>Error: {error.message}</div>
     } else if (!isLoaded) {
       temp = <div>Loading...</div>
@@ -198,7 +222,9 @@ export default class UserTable extends Component {
           </div>
         </div>
         </div>
-        {temp}
+        <div id='content-container'>
+          {temp}
+        </div>
       </div>
     );
   }
