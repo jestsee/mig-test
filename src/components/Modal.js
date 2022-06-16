@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, {  } from "react";
 import UserDelete from "./UserDelete";
 
-export default function Modal({show, setShow}) {
+export default function Modal({show, setShow, children}) {
+
   return (
     <>
       {/* <button
@@ -11,22 +12,22 @@ export default function Modal({show, setShow}) {
       >
         Open regular modal
       </button> */}
-      {show ? (
+      {show && (
         <>
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
           >
-            <div className="">
+            <div>
               {/*content*/}
               <div className="border-0 rounded-xl shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <UserDelete/>
+                {children}
+                {/* <UserDelete closeModal={() => setShow(false)} name={name} deleteHandler={deleteHandler}/> */}
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black" 
-          onClick={() => console.log('overlay clicked')}></div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
-      ) : null}
+      )}
     </>
   );
 }

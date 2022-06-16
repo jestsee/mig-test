@@ -35,30 +35,15 @@ export default function Table({ columns, data, setSelectedUser, deleteHandler })
   const { pageIndex, pageSize } = state
 
   const [selectedId, setSelectedId] = useState(null)
-  const [showModal, setShowModal] = useState(false)
 
   const getSelectedData = (row) => {
     setSelectedId(row.id)
     setSelectedUser(row.original)
   }
 
-  const showDeleteModal = () => {
-    setShowModal(!showModal)
-  }
-
   return (
   <>
-  {
-    <Modal show={showModal} setShow={setShowModal}/>
-  }
-  <div className='flex justify-between'>
-    <UserTableFilter filter={globalFilter} setFilter={setGlobalFilter}/>
-    {selectedId && <div>
-      <button className='p-2'>edit</button>
-      {/* <button className='p-2' onClick={deleteHandler}>delete</button> */}
-      <button className='p-2' onClick={showDeleteModal}>delete</button>
-    </div>}
-  </div>
+  <UserTableFilter filter={globalFilter} setFilter={setGlobalFilter}/>
   <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
     <table {...getTableProps()}>
       <thead className="bg-primary text-white text-left">

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useTable } from 'react-table';
 import httpService from '../http-service';
 import UserDataService from '../services/service'
+import Modal from './Modal';
+import UserDelete from './UserDelete';
 import { COLUMNS } from './UserTableColumn';
 import Table from './UserTableContainer';
 
@@ -11,6 +13,7 @@ export default function UserTable1() {
   const [error, setError] = useState(null)
   const [tokenExpired, setTokenExpired] = useState(false)
   const [selectedUser, setSelectedUser] = useState(null)
+  const [showModal, setShowModal] = useState(false)
 
   const [updated, setUpdated] = useState(false)
   const [updateError, setUpdateError] = useState(null)
@@ -22,6 +25,10 @@ export default function UserTable1() {
   // const data = useMemo(() => users, [])
 
   console.log("SELECTED USER: ", selectedUser);
+
+  const showDeleteModal = () => {
+    setShowModal(!showModal)
+  }
   
   // fetching data using axios
   useEffect(() => {
@@ -69,7 +76,9 @@ export default function UserTable1() {
     console.log("delete user terpanggil");
     UserDataService.delete(selectedUser.id).then(
       ((res) => {
+        setDeleted(true)
         console.log("hasil delete: ", res);
+        window.location.reload();
       })
     ).catch((error) => {
       console.log(error);
@@ -103,6 +112,16 @@ export default function UserTable1() {
 
   return (
   <div>
+    <Modal show={showModal}>
+      {selectedUser !== null && <UserDelete closeModal={showDeleteModal} name={selectedUser.name} deleteHandler={deleteUser}/>}
+    </Modal>
+    <div className='flex justify-between'>
+      {selectedUser && <div>
+        <button className='p-2'>edit</button>
+        {/* <button className='p-2' onClick={deleteHandler}>delete</button> */}
+        <button className='p-2' onClick={showDeleteModal}>delete</button>
+      </div>}
+    </div>
     {temp}
   </div>)
 }
