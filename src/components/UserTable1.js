@@ -127,6 +127,14 @@ export default function UserTable1() {
     }
   }
 
+  // close modal
+  const closeModal = () => {
+    setShowModal(!showModal)
+    setAddClicked(!showModal)
+    setUpdateClicked(!showModal)
+    setDeleteClicked(!showAddModal)
+  }
+
   var temp = null
 
   if (tokenExpired) {
@@ -141,15 +149,18 @@ export default function UserTable1() {
 
   return (
   <div>
-    {(selectedUser !== null || addClicked) && <Modal show={showModal} setShow={() => setShowModal(!showModal)}>
-      {/* delete user */}
-      {deleteClicked && <UserDelete closeModal={showDeleteModal} name={selectedUser.name} deleteHandler={deleteUser}/>}
-      {/* deleted acknowledge */}
-      {deleted && <Acknowledge/>}
-
-      {/* add new user */}
-      {addClicked && <UserAdd/>}
-    </Modal>}
+    {selectedUser !== null && 
+      <Modal show={showModal} close={closeModal}>
+        {/* delete user */}
+        {deleteClicked && <UserDelete closeModal={showDeleteModal} name={selectedUser.name} deleteHandler={deleteUser}/>}
+        {/* deleted acknowledge */}
+        {deleted && <Acknowledge/>}
+      </Modal>}
+    {addClicked && 
+      <Modal show={showModal} close={closeModal}>
+        {/* add new user */}
+        {addClicked && <UserAdd/>}
+      </Modal>}
     <div className='flex justify-between'>
       <button className='green-button' onClick={showAddModal}>Add new user</button>
       {selectedUser && <div>

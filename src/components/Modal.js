@@ -1,27 +1,29 @@
 import React, {  } from "react";
-import UserDelete from "./UserDelete";
 
-export default function Modal({show, setShow, children}) {
+export default function Modal({show, close, children}) {
+  const onModalClick = (e) => {
+    e.stopPropagation()
+  }
 
   return (
     <>
       {/* <button
         className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
-        onClick={() => setShow(true)}
+        onClick={() => close(true)}
       >
         Open regular modal
       </button> */}
       {show && (
         <>
           <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none" onClick={setShow} // TODO klo klik inside jg ilang
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none" onClick={close} // TODO klo klik inside jg ilang
           >
             <div>
               {/*content*/}
-              <div className="border-0 rounded-xl shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-xl shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+              onClick={onModalClick}>
                 {children}
-                {/* <UserDelete closeModal={() => setShow(false)} name={name} deleteHandler={deleteHandler}/> */}
               </div>
             </div>
           </div>

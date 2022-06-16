@@ -14,7 +14,7 @@ export default function UserDelete({closeModal, name, deleteHandler}) {
           Are you sure you want to delete <strong>{name}</strong>?
         </p>
         <p>
-          Please note the action can't be undone.
+          Please note that the action can't be undone.
         </p>
       </div>
     </div>
