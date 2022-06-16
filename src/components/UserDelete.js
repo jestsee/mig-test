@@ -20,12 +20,12 @@ export default function UserDelete({closeModal, name, deleteHandler}) {
     </div>
     <div className="mb-3">
       <button
-        className="bg-[red] text-white active:bg-[#da0909] font-semibold uppercase text-sm px-4 py-2 rounded-2xl shadow hover:shadow-lg outline-none focus:outline-none mr-4 ease-linear transition-all duration-150" type="button" onClick={deleteHandler}
+        className="red-button" type="button" onClick={deleteHandler}
         >
         Yes, I'm sure
       </button>
       <button
-        className="bg-emerald-500 text-white active:bg-emerald-600 font-semibold uppercase text-sm px-4 py-2 rounded-2xl shadow hover:shadow-lg outline-none focus:outline-none mr-4 ease-linear transition-all duration-150"
+        className="green-button"
         type="button" onClick={closeModal}
         >
         No, Cancel

@@ -16,8 +16,24 @@ class UserDataService {
       }
     })
   }
-  create(data) {
-    return HttpService.httpService().post("/customers")
+  create(
+    name,
+    address,
+    country, 
+    phone_number, 
+    job_title, 
+    status
+  ) {
+    return HttpService.httpService().post("/customers", {
+      data: {
+        name: name,
+        address: address,
+        country: country,
+        phone_number: phone_number,
+        job_title: job_title,
+        status: status === "active" ? true : false,
+      }
+    })
   }
   update(
     id, 

@@ -14,10 +14,9 @@ export default function Acknowledge() {
       </div>
     </div>
       <button
-        className="bg-emerald-500 text-white active:bg-emerald-600 font-semibold uppercase text-sm px-4 py-2 rounded-2xl shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 w-5/6 mb-3"
+        className="green-button-long"
         type="button" onClick={() => window.location.reload()}
-        >
-        Ok
+        >Ok
       </button>
   </div>)
 }
