@@ -25,14 +25,12 @@ class UserDataService {
     status
   ) {
     return HttpService.httpService().post("/customers", {
-      data: {
         name: name,
         address: address,
         country: country,
         phone_number: phone_number,
         job_title: job_title,
         status: status === "active" ? true : false,
-      }
     })
   }
   update(

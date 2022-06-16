@@ -17,17 +17,19 @@ export default function UserTable1() {
   const [selectedUser, setSelectedUser] = useState(null)
   const [showModal, setShowModal] = useState(false)
 
-  const [addData, setAddData] = useState({
+  const initialValues = {
     name: '',
     address: '',
     country: '',
     phone_number: '',
     job_title: '',
     status: '',
-  })
+  }
+  const [addData, setAddData] = useState(initialValues)
   const [addClicked, setAddClicked] = useState(false)
   const [added, setAdded] = useState(false)
   const [addError, setAddError] = useState(null)
+  const [submitClicked, setSubmitClicked] = useState(false)
 
   const [updateClicked, setUpdateClicked] = useState(false)
   const [updated, setUpdated] = useState(false)
@@ -73,9 +75,22 @@ export default function UserTable1() {
 
   // add new data
   const addUser = () => {
+    console.log("add user terpanggil");
     UserDataService.create(
-      
-    )
+      addData.name,
+      addData.address,
+      addData.country,
+      addData.phone_number,
+      addData.job_title,
+      addData.status
+    ).then((res) => {
+      console.log("hasil: ", res);
+      setAdded(true)
+      setSubmitClicked(false)
+    }).catch((error) => {
+      console.log(error);
+      setAddError(error.message)
+    })
   }
 
   // update selected data
@@ -149,6 +164,7 @@ export default function UserTable1() {
 
   return (
   <div>
+    {submitClicked ? addUser() : null}
     {selectedUser !== null && 
       <Modal show={showModal} close={closeModal}>
         {/* delete user */}
@@ -159,7 +175,8 @@ export default function UserTable1() {
     {addClicked && 
       <Modal show={showModal} close={closeModal}>
         {/* add new user */}
-        {addClicked && <UserAdd/>}
+        {addClicked && <UserAdd submit={setAddData} submitClicked={setSubmitClicked}/>}
+        {submitClicked && <Modal><Acknowledge/></Modal>}
       </Modal>}
     <div className='flex justify-between'>
       <button className='green-button' onClick={showAddModal}>Add new user</button>
