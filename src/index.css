@@ -10,6 +10,13 @@
     hover:bg-greenbg hover:border-l-4 hover:border-primary hover:w-full;
   }
 
+  .sidebar-icon-selected {
+    @apply 
+    relative flex items-center justify-center
+    h-12 mt-2 mb-2 mx-auto
+    bg-greenbg border-l-4 border-primary w-full;
+  }
+
   body {
     @apply
     ml-[6rem] mt-[2.5rem] pb-[2.5rem] mr-7

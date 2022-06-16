@@ -50,7 +50,7 @@ export default function Table({ columns, data, setSelectedUser, deleteHandler })
     <UserTableFilter filter={globalFilter} setFilter={setGlobalFilter}/>
     {selectedId && <div>
       <button className='p-2'>edit</button>
-      <button className='p-2' onClick={temp}>delete</button>
+      <button className='p-2' onClick={deleteHandler}>delete</button>
     </div>}
   </div>
   <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>

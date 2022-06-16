@@ -67,7 +67,7 @@ export default function UserTable1() {
   // delete selected data
   const deleteUser = () => {
     console.log("delete user terpanggil");
-    return UserDataService.delete(selectedUser.id).then(
+    UserDataService.delete(selectedUser.id).then(
       ((res) => {
         console.log("hasil delete: ", res);
       })
