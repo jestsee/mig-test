@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useTable } from 'react-table';
 import httpService from '../http-service';
 import UserDataService from '../services/service'
+import Acknowledge from './Acknowledge';
 import Modal from './Modal';
 import UserDelete from './UserDelete';
 import { COLUMNS } from './UserTableColumn';
@@ -77,8 +78,9 @@ export default function UserTable1() {
     UserDataService.delete(selectedUser.id).then(
       ((res) => {
         setDeleted(true)
+        setSelectedUser(null)
         console.log("hasil delete: ", res);
-        window.location.reload();
+        // window.location.reload();
       })
     ).catch((error) => {
       console.log(error);
@@ -113,7 +115,10 @@ export default function UserTable1() {
   return (
   <div>
     <Modal show={showModal}>
+      {/* delete user */}
       {selectedUser !== null && <UserDelete closeModal={showDeleteModal} name={selectedUser.name} deleteHandler={deleteUser}/>}
+      {/* deleted acknowledge */}
+      {deleted && <Acknowledge/>}
     </Modal>
     <div className='flex justify-between'>
       {selectedUser && <div>

@@ -4,7 +4,7 @@ export default function UserDelete({closeModal, name, deleteHandler}) {
   return (
   // nanti pas size small dibikin pake vw?
   <div className="text-center mx-12 my-6"> 
-    <RiErrorWarningLine className="block mx-auto mb-3" color="red" size='64'/>
+    <RiErrorWarningLine className="block mx-auto mb-3" color="red" size='96'/>
     <div className="mb-4">
       <h3 className="font-semibold text-xl">
         Delete this user?
