@@ -1,15 +1,23 @@
 import HttpService from "../http-service";
 
 class UserDataService {
-
+  
   newToken() {
     HttpService.generateNewToken()
   }
   getAll() {
     return HttpService.httpService().get('/customers')
   }
+  delete(id) {
+    console.log("delete terpanggil");
+    return HttpService.httpService().delete("/customers", {
+      data: {
+        id: id
+      }
+    })
+  }
   create(data) {
-    return HttpService.post("/customers")
+    return HttpService.httpService().post("/customers")
   }
   update(
     id, 
@@ -20,7 +28,7 @@ class UserDataService {
     job_title, 
     status
     ) {
-    return HttpService.put("/customers", {
+    return HttpService.httpService().put("/customers", {
       id, 
       name, 
       address, 
@@ -28,12 +36,6 @@ class UserDataService {
       phone_number, 
       job_title, 
       status
-    })
-  }
-  delete(id) {
-    console.log("delete terpanggil");
-    return HttpService.delete("/customers", {
-      id
     })
   }
 }

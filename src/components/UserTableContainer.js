@@ -3,6 +3,7 @@ import { useTable, useSortBy, useGlobalFilter, usePagination, useRowSelect } fro
 import { FaSortAlphaUp, FaSortAlphaDown } from "react-icons/fa";
 import { TiArrowUnsorted } from "react-icons/ti";
 import { UserTableFilter } from './UserTableFilter';
+import Modal from './Modal';
 
 export default function Table({ columns, data, setSelectedUser, deleteHandler }) {
   const { 
@@ -32,25 +33,30 @@ export default function Table({ columns, data, setSelectedUser, deleteHandler })
 
   const { globalFilter } = state
   const { pageIndex, pageSize } = state
+
   const [selectedId, setSelectedId] = useState(null)
+  const [showModal, setShowModal] = useState(false)
 
   const getSelectedData = (row) => {
     setSelectedId(row.id)
     setSelectedUser(row.original)
   }
 
-  const temp = () => {
-    console.log("terpanggil");
-    deleteHandler()
+  const showDeleteModal = () => {
+    setShowModal(!showModal)
   }
 
   return (
   <>
+  {
+    <Modal show={showModal} setShow={setShowModal}/>
+  }
   <div className='flex justify-between'>
     <UserTableFilter filter={globalFilter} setFilter={setGlobalFilter}/>
     {selectedId && <div>
       <button className='p-2'>edit</button>
-      <button className='p-2' onClick={deleteHandler}>delete</button>
+      {/* <button className='p-2' onClick={deleteHandler}>delete</button> */}
+      <button className='p-2' onClick={showDeleteModal}>delete</button>
     </div>}
   </div>
   <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>

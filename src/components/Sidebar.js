@@ -4,7 +4,10 @@ import { SideBarItem } from './SidebarItem';
 
 
 export default function Sidebar() {
-  const [selectedId, setSelectedId] = useState(4)
+  const [currentPath, setCurrentPath] = useState('')
+  const [selectedId, setSelectedId] = useState(
+    window.location.pathname === '/' ? 0 : 4 // TODO
+  )
   
   return (
     <div className='fixed top-0 left-0 h-screen w-16 m-0 
