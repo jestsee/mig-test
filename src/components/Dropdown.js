@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { IoMdArrowDropdownCircle, IoMdArrowDropupCircle } from "react-icons/io";
 
-export default function Dropdown({statusHandler}) {
+export default function Dropdown({statusHandler, initialStatus=null}) {
   const [isActive, setIsActive] = useState(false) 
-  const [status, setStatus] = useState(null)
+  const [status, setStatus] = useState(initialStatus ? "Active" : "Inactive")
+
+  console.log('initial status: ', initialStatus);
 
   const itemClickHandler = (item) => {
     setStatus(item.value)

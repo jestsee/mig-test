@@ -67,7 +67,7 @@ name1, address1, country1, phone1, job1, status1,
     </div>
     <div className='w-1/2 ml-2 mb-3'>
       <label>Status</label>
-      <Dropdown statusHandler={setStatus}/>
+      <Dropdown statusHandler={setStatus} initialStatus={status}/>
       {statusError && <p className="text-[red] text-sm -mt-1 mb-3">The field can't be empty!</p>}
     </div>
   </div>
