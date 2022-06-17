@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Dropdown from "./Dropdown";
 import InputField from "./InputField";
 
-export default function UserAdd({submit, submitClicked}) {
+export default function UserAdd({submit, submitClicked, modalHandler}) {
   const [name, setName] = useState("")
   const [address, setAddress] = useState("")
   const [country, setCountry] = useState("")
@@ -43,7 +43,7 @@ export default function UserAdd({submit, submitClicked}) {
           job_title: job,
           status: status}
         )
-        submitClicked(true)
+        submitClicked()
       }
   }
 

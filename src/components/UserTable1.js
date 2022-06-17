@@ -5,6 +5,7 @@ import UserDataService from '../services/service'
 import Acknowledge from './Acknowledge';
 import Modal from './Modal';
 import UserAdd from './UserAdd';
+import UserAddConfirmation from './UserAddConfirmation';
 import UserDelete from './UserDelete';
 import { COLUMNS } from './UserTableColumn';
 import Table from './UserTableContainer';
@@ -144,10 +145,17 @@ export default function UserTable1() {
 
   // close modal
   const closeModal = () => {
-    setShowModal(!showModal)
-    setAddClicked(!showModal)
-    setUpdateClicked(!showModal)
-    setDeleteClicked(!showAddModal)
+    console.log("close modal called");
+    setShowModal(false)
+    setAddClicked(false)
+    setUpdateClicked(false)
+    setDeleteClicked(false)
+    setSubmitClicked(false)
+  }
+
+  const submitAddUser = () => {
+    setAddClicked(false)
+    setSubmitClicked(true)
   }
 
   var temp = null
@@ -176,23 +184,62 @@ export default function UserTable1() {
     </div>
   </UserDelete>
 
-  return (
-  <div>
-    {submitClicked ? addUser() : null}
-    {selectedUser !== null && 
-      <Modal show={showModal} close={closeModal} closable={false}>
+  let addUserTemp = <UserAddConfirmation>
+    <div className="mb-3">
+      <button
+        className="red-button" type="button" onClick={addUser}
+        > Yes, I'm sure
+      </button>
+      <button
+        className="green-button"
+        type="button" onClick={closeModal}
+        > No, Cancel
+      </button>
+    </div>
+  </UserAddConfirmation>
+
+  const confirmationModal = () => {
+    console.log(`added:${added} submitclicked:${submitClicked} deleteClicked:${deleteClicked}`);
+    if (addClicked) {
+      console.log("masuk add clicked");
+      return <Modal show={showModal} close={closeModal}>
+        {/* add new user */}
+        <UserAdd submit={setAddData} submitClicked={submitAddUser}/>
+      </Modal>
+    }
+    if (submitClicked) {
+      console.log("masuk submit clicked");
+      return <Modal show={showModal} close={closeModal}>
+        {addUserTemp}
+      </Modal>
+    }
+    if (added) {
+      console.log('masuk added');
+      return <Modal show={showModal} close={closeModal}>
+        <Acknowledge 
+        title={"User Added"}
+        subtitle1="New user added!"
+        subtitle2="Press the button below to reload the page."/>
+      </Modal>
+    }
+    if (selectedUser !== null && (deleteClicked || deleted)) {
+      console.log("masuk selected clicked");
+      return <Modal show={showModal} close={closeModal} closable={false}>
         {/* delete user */}
         {deleteClicked && deleteUserTemp}
         {/* deleted acknowledge */}
-        {deleted && <Acknowledge/>}
-      </Modal>}
-    
-    {addClicked && 
-      <Modal show={showModal} close={closeModal}>
-        {/* add new user */}
-        {addClicked && <UserAdd submit={setAddData} submitClicked={setSubmitClicked}/>}
-        {submitClicked && <Modal><Acknowledge/></Modal>}
-      </Modal>}
+        {deleted && <Acknowledge 
+        title={"User Deleted"}
+        subtitle1="User deleted successfully!"
+        subtitle2="Press the button below to reload the page."/>}
+      </Modal>
+    }
+  }
+
+  return (
+  <div>
+    {/* {submitClicked ? addUser() : null} */}
+    {confirmationModal()}
 
     <div className='flex justify-between'>
       <button className='green-button' onClick={showAddModal}>Add new user</button>
