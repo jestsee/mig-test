@@ -1,23 +1,22 @@
 import React, {  } from "react";
 
-export default function Modal({show, close, children}) {
+export default function Modal({show, close, children, closable = true}) {
   const onModalClick = (e) => {
     e.stopPropagation()
   }
 
+  const closeAction = () => {
+    if (closable) {
+      close()
+    }
+  }
+
   return (
     <>
-      {/* <button
-        className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-        type="button"
-        onClick={() => close(true)}
-      >
-        Open regular modal
-      </button> */}
       {show && (
         <>
           <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none" onClick={close} // TODO klo klik inside jg ilang
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none" onClick={closeAction} // TODO klo klik inside jg ilang
           >
             <div>
               {/*content*/}

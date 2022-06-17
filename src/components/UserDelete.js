@@ -1,6 +1,6 @@
 import { RiErrorWarningLine } from "react-icons/ri";
 
-export default function UserDelete({closeModal, name, deleteHandler}) {
+export default function UserDelete({name, children}) {
   return (
   // nanti pas size small dibikin pake vw?
   <div className="text-center mx-12 my-6"> 
@@ -18,18 +18,6 @@ export default function UserDelete({closeModal, name, deleteHandler}) {
         </p>
       </div>
     </div>
-    <div className="mb-3">
-      <button
-        className="red-button" type="button" onClick={deleteHandler}
-        >
-        Yes, I'm sure
-      </button>
-      <button
-        className="green-button"
-        type="button" onClick={closeModal}
-        >
-        No, Cancel
-      </button>
-    </div>
+    {children}
   </div>)
 }

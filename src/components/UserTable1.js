@@ -41,8 +41,6 @@ export default function UserTable1() {
 
   const columns = useMemo(() => COLUMNS, [])
 
-  console.log("SELECTED USER: ", selectedUser);
-
   const showDeleteModal = () => {
     setShowModal(!showModal)
     setDeleteClicked(true)
@@ -76,6 +74,7 @@ export default function UserTable1() {
   // add new data
   const addUser = () => {
     console.log("add user terpanggil");
+    console.log(addData);
     UserDataService.create(
       addData.name,
       addData.address,
@@ -120,7 +119,8 @@ export default function UserTable1() {
     UserDataService.delete(selectedUser.id).then(
       ((res) => {
         setDeleted(true)
-        setSelectedUser(null)
+        setDeleteClicked(!deleteClicked)
+        // setSelectedUser(null)
         console.log("hasil delete: ", res);
         // window.location.reload();
       })
@@ -162,22 +162,38 @@ export default function UserTable1() {
     temp = <Table columns={columns} data={users} setSelectedUser={setSelectedUser} deleteHandler={deleteUser}/>
   }
 
+  let deleteUserTemp = <UserDelete name={selectedUser === null ? null : selectedUser.name}>
+    <div className="mb-3">
+      <button
+        className="red-button" type="button" onClick={deleteUser}
+        > Yes, I'm sure
+      </button>
+      <button
+        className="green-button"
+        type="button" onClick={showDeleteModal}
+        > No, Cancel
+      </button>
+    </div>
+  </UserDelete>
+
   return (
   <div>
     {submitClicked ? addUser() : null}
     {selectedUser !== null && 
-      <Modal show={showModal} close={closeModal}>
+      <Modal show={showModal} close={closeModal} closable={false}>
         {/* delete user */}
-        {deleteClicked && <UserDelete closeModal={showDeleteModal} name={selectedUser.name} deleteHandler={deleteUser}/>}
+        {deleteClicked && deleteUserTemp}
         {/* deleted acknowledge */}
         {deleted && <Acknowledge/>}
       </Modal>}
+    
     {addClicked && 
       <Modal show={showModal} close={closeModal}>
         {/* add new user */}
         {addClicked && <UserAdd submit={setAddData} submitClicked={setSubmitClicked}/>}
         {submitClicked && <Modal><Acknowledge/></Modal>}
       </Modal>}
+
     <div className='flex justify-between'>
       <button className='green-button' onClick={showAddModal}>Add new user</button>
       {selectedUser && <div>

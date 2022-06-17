@@ -1,6 +1,7 @@
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
 export default function Acknowledge() {
+  console.log("acknowledge called");
   return (
   <div className="text-center mx-12 my-6">
     <BsFillCheckCircleFill className="block mx-auto my-3 text-emerald-500" size='96'/>

@@ -30,7 +30,7 @@ class UserDataService {
         country: country,
         phone_number: phone_number,
         job_title: job_title,
-        status: status === "active" ? true : false,
+        status: status === "Active",
     })
   }
   update(

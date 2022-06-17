@@ -26,8 +26,14 @@ export default function UserAdd({submit, submitClicked}) {
     job === "" ? setJobError(true) : setJobError(false)
     status === "" ? setStatusError(true) : setStatusError(false)
 
-    if(!nameError && !addressError && !countryError &&
-      !phoneError && !jobError && !statusError) {
+
+    if(name !== "" 
+      && address !== "" 
+      && country !== ""
+      && phone !== ""
+      && job !== ""
+      && status !== ""
+    ) {
         console.log("lanjut bro");
         submit(
           {name: name,
@@ -35,7 +41,7 @@ export default function UserAdd({submit, submitClicked}) {
           country: country,
           phone_number: phone,
           job_title: job,
-          status: status === "active"}
+          status: status}
         )
         submitClicked(true)
       }
