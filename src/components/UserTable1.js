@@ -9,6 +9,7 @@ import UserAddConfirmation from './UserAddConfirmation';
 import UserDelete from './UserDelete';
 import { COLUMNS } from './UserTableColumn';
 import Table from './UserTableContainer';
+import UserUpdate from './UserUpdate';
 
 export default function UserTable1() {
   const [users, setUsers] = useState([])
@@ -33,6 +34,7 @@ export default function UserTable1() {
   const [submitClicked, setSubmitClicked] = useState(false)
 
   const [updateClicked, setUpdateClicked] = useState(false)
+  const [updateSubmitClicked, setUpdateSubmitClicked] = useState(false)
   const [updated, setUpdated] = useState(false)
   const [updateError, setUpdateError] = useState(null)
   
@@ -50,6 +52,11 @@ export default function UserTable1() {
   const showAddModal = () => {
     setShowModal(!showModal)
     setAddClicked(true)
+  }
+
+  const showUpdateModal = () => {
+    setShowModal(!showModal)
+    setUpdateClicked(true)
   }
   
   // fetching data using axios
@@ -97,16 +104,17 @@ export default function UserTable1() {
   const updateUser = () => {
     UserDataService.update(
       selectedUser.id, 
-      selectedUser.name,
-      selectedUser.address,
-      selectedUser.country,
-      selectedUser.phone_number,
-      selectedUser.job_title,
-      selectedUser.status
+      addData.name,
+      addData.address,
+      addData.country,
+      addData.phone_number,
+      addData.job_title,
+      addData.status
     ).then(
       ((res) => {
         console.log("hasil update: ", res);
         setUpdated(true)
+        setUpdateSubmitClicked(false)
       })
     ).catch((error) => {
       console.log(error);
@@ -158,6 +166,11 @@ export default function UserTable1() {
     setSubmitClicked(true)
   }
 
+  const submitUpdateUser = () => {
+    setUpdateClicked(false)
+    setUpdateSubmitClicked(true)
+  }
+
   var temp = null
 
   if (tokenExpired) {
@@ -178,16 +191,38 @@ export default function UserTable1() {
       </button>
       <button
         className="green-button"
-        type="button" onClick={showDeleteModal}
+        type="button" onClick={closeModal}
         > No, Cancel
       </button>
     </div>
   </UserDelete>
 
-  let addUserTemp = <UserAddConfirmation>
+  let addUserTemp = <UserAddConfirmation
+  title={"Add this user?"}
+  sub1={"Are you sure you want to add this new user?"}
+  sub2={"Please note that the action can't be undone."}
+  >
     <div className="mb-3">
       <button
         className="red-button" type="button" onClick={addUser}
+        > Yes, I'm sure
+      </button>
+      <button
+        className="green-button"
+        type="button" onClick={closeModal}
+        > No, Cancel
+      </button>
+    </div>
+  </UserAddConfirmation>
+  
+  let updateUserTemp = <UserAddConfirmation
+  title={"Update this user?"}
+  sub1={`Are you sure you want to update ${selectedUser !== null ? selectedUser.name : null}?`}
+  sub2={"Please note that the action can't be undone."}
+  >
+    <div className="mb-3">
+      <button
+        className="red-button" type="button" onClick={updateUser}
         > Yes, I'm sure
       </button>
       <button
@@ -234,17 +269,37 @@ export default function UserTable1() {
         subtitle2="Press the button below to reload the page."/>}
       </Modal>
     }
+    if (selectedUser !== null && updateClicked) {
+      return <Modal show={showModal} close={closeModal}>
+        <UserUpdate submit={setAddData} submitClicked={submitUpdateUser}
+        name1={selectedUser.name} address1={selectedUser.address}
+        phone1={selectedUser.phone_number} job1={selectedUser.job_title}
+        status1={selectedUser.status} country1={selectedUser.country}
+        />
+      </Modal>
+    }
+    if (updateSubmitClicked) {
+      return <Modal show={showModal} close={closeModal}>
+        {updateUserTemp}
+      </Modal>
+    }
+    if (updated) {
+      return <Modal show={showModal} close={closeModal}>
+        <Acknowledge 
+        title={"User Updated"}
+        subtitle1={`User ${selectedUser !== null ? selectedUser.name : null} has been updated!`}
+        subtitle2="Press the button below to reload the page."/>
+      </Modal>
+    }
   }
 
   return (
   <div>
-    {/* {submitClicked ? addUser() : null} */}
     {confirmationModal()}
-
     <div className='flex justify-between'>
       <button className='green-button' onClick={showAddModal}>Add new user</button>
       {selectedUser && <div>
-        <button className='green-button'>edit</button>
+        <button className='green-button' onClick={showUpdateModal}>update</button>
         <button className='red-button' onClick={showDeleteModal}>delete</button>
       </div>}
     </div>

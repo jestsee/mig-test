@@ -43,13 +43,13 @@ class UserDataService {
     status
     ) {
     return HttpService.httpService().put("/customers", {
-      id, 
-      name, 
-      address, 
-      country, 
-      phone_number, 
-      job_title, 
-      status
+      id: id,
+      name: name,
+      address: address,
+      country: country,
+      phone_number: phone_number,
+      job_title: job_title,
+      status: status === "Active"
     })
   }
 }

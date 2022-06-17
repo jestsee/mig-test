@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Dropdown from "./Dropdown";
 import InputField from "./InputField";
 
-export default function UserAdd({submit, submitClicked, modalHandler}) {
+export default function UserAdd({submit, submitClicked}) {
   const [name, setName] = useState("")
   const [address, setAddress] = useState("")
   const [country, setCountry] = useState("")
