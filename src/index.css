@@ -6,7 +6,7 @@
   .sidebar-icon {
     @apply 
     relative flex items-center justify-center
-    h-12 w-12 mt-2 mb-2 mx-auto
+    h-12 w-12 my-2 mx-auto
     hover:bg-greenbg hover:border-l-4 
     hover:border-primary hover:w-full;
   }
@@ -14,13 +14,25 @@
   .sidebar-icon-selected {
     @apply 
     relative flex items-center justify-center
-    h-12 mt-2 mb-2 mx-auto
+    h-12 my-2 mx-auto
     bg-greenbg border-l-4 border-primary w-full;
+  }
+
+  .sidebar {
+    @apply
+    fixed top-0 shadow-xl flex flex-col bg-white text-[grey] list-none transition-all
+    md:h-full md:w-16 md:m-0 md:left-0
+    -left-full
+  }
+
+  .active {
+    @apply
+    left-0 w-full mt-16 z-10 md:w-16 md:mt-0
   }
 
   body {
     @apply
-    ml-[6rem] mt-[2.5rem] pb-[2.5rem] mr-7
+    md:mt-4 pb-[2.5rem] md:mr-7 md:ml-[6rem] mx-4 mt-16
     h-screen bg-greenbg;
   }
 
