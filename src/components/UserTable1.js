@@ -15,6 +15,7 @@ export default function UserTable1() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [tokenExpired, setTokenExpired] = useState(false);
+  const [tokenGenerated, setTokenGenerated] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -141,15 +142,9 @@ export default function UserTable1() {
   };
 
   // handling expired token
-  const tokenHandler = () => {
-    let tokenGenerted = httpService.generateNewToken();
-    if (tokenGenerted) {
-      console.log("token generated!");
-      setTokenExpired(false);
-    } else {
-      console.log("masuk else token generated");
-      setError("Something went wrong : (");
-    }
+  const tokenHandler = async () => {
+    console.log(await httpService.generateNewToken())
+    
   };
 
   // close modal

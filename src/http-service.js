@@ -46,7 +46,7 @@ class HttpService {
         console.log(error);
       });
 
-    return token === "" ? false : true;
+    // return token !== "";
   }
 
   httpService() {

@@ -7,10 +7,10 @@ export const UserTableFilter = ({ filter, setFilter }) => {
       <input
         value={filter || ""}
         onChange={(e) => setFilter(e.target.value)}
-        className="w-[90%] h-full pt-2 px-5 pb-3 rounded-2xl focus:outline-none"
+        className="w-full h-full pt-2 px-5 pb-3 rounded-2xl focus:outline-none"
         placeholder="Search"
       ></input>
-      <i className="absolute pr-2 pt-1.5 text-[grey]">
+      <i className="absolute -translate-x-10 pt-1.5 text-[grey]">
         <BiSearchAlt size="24"/>
       </i>
     </div>
