@@ -19,7 +19,6 @@ name1, address1, country1, phone1, job1, status1,
   const [jobError, setJobError] = useState(false)
   const [statusError, setStatusError] = useState(false)
 
-  // TODO kalo fieldnya udah ga ada yg kosong baru forward ke table-1
   const validate = () => {
     name === "" ? setNameError(true) : setNameError(false)
     address === "" ? setAddressError(true) : setAddressError(false)

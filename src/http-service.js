@@ -1,19 +1,19 @@
 import axios from "axios";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 class HttpService {
-  constructor () {
-    this.baseURL = "https://mitramas-test.herokuapp.com"
+  constructor() {
+    this.baseURL = "https://mitramas-test.herokuapp.com";
   }
 
   getToken() {
-    var token = Cookies.get('token');
-    if (typeof token === 'undefined') {
+    var token = Cookies.get("token");
+    if (typeof token === "undefined") {
       // generate new token
-      this.generateNewToken()
-  
+      this.generateNewToken();
+
       // get new token
-      token = Cookies.get('token');
+      token = Cookies.get("token");
     }
     return token;
   }
@@ -22,29 +22,31 @@ class HttpService {
     console.log("Generate new token!");
     // TODO masukin ke .env
     const data = JSON.stringify({
-      "email": "akun28@mig.id",
-      "password": "2C6490B8"
-    });
-  
-    const config = {
-      method: 'post',
-      url: this.baseURL + '/auth/login',
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-  
-    var token = ''
-    axios(config).then(function (response) {
-      token = response.data.access_token
-      Cookies.set('token', token)
-      console.log(Cookies.get('token'));
-    }).catch(function (error) {
-      console.log(error);
+      email: "akun28@mig.id",
+      password: "2C6490B8",
     });
 
-    return token === "" ? false : true
+    const config = {
+      method: "post",
+      url: this.baseURL + "/auth/login",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    var token = "";
+    axios(config)
+      .then(function (response) {
+        token = response.data.access_token;
+        Cookies.set("token", token);
+        console.log(Cookies.get("token"));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    return token === "" ? false : true;
   }
 
   httpService() {
@@ -52,10 +54,10 @@ class HttpService {
     return axios.create({
       baseURL: this.baseURL,
       headers: {
-        Authorization: this.getToken()
+        Authorization: this.getToken(),
       },
     });
-  } 
+  }
 }
 
-export default new HttpService;
+export default new HttpService();
