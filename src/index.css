@@ -7,7 +7,8 @@
     @apply 
     relative flex items-center justify-center
     h-12 w-12 mt-2 mb-2 mx-auto
-    hover:bg-greenbg hover:border-l-4 hover:border-primary hover:w-full;
+    hover:bg-greenbg hover:border-l-4 
+    hover:border-primary hover:w-full;
   }
 
   .sidebar-icon-selected {

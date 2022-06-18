@@ -3,7 +3,7 @@ import { FiEdit2, FiTrash2 } from "react-icons/fi";
 
 export default function BankAccount() {
   return (
-    <div className="p-[2vw]">
+    <div className="px-[2vw] pt-[1.5vw] pb-1 lg:-mb-9 md:-mb-16 md:pb-0">
       <div className="mb-[1.5vw] flex justify-between">
         <p className="font-bold text-lg">Akun Bank</p>
         <button className="bg-primary text-white text-sm rounded py-[8px] px-[2vw] flex">

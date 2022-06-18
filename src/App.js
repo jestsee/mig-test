@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
-import ContentGrid from './components/ContentGrid';
+import ContentGrid from './components/dashboard/ContentGrid';
 import UserTable1 from './components/UserTable1';
 
 function App() {
