@@ -6,7 +6,7 @@ export default function BankAccount() {
     <div className="px-[2vw] pt-[1.5vw] pb-1 lg:-mb-9 md:-mb-16 md:pb-0">
       <div className="mb-[1.5vw] flex justify-between">
         <p className="font-bold text-lg">Akun Bank</p>
-        <button className="bg-primary text-white text-sm rounded py-[8px] px-[2vw] flex">
+        <button className="bg-primary text-white text-sm rounded-lg py-[8px] px-[2vw] flex">
           <BsPlusLg className="mr-4 mt-1" size='13'/>
           Tambah Akun Bank
         </button>

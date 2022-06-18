@@ -11,15 +11,15 @@ export const SideBarItem = [
   },
   {
     icon: <HiOutlineTicket size='22'/>,
-    name: 'Item 2',
+    name: 'Item 1',
   },
   {
     icon: <BiTask size='22'/>,
-    name: 'Item 3',
+    name: 'Item 2',
   },
   {
     icon: <IoTrashBinOutline size='22'/>,
-    name: 'Item 4',
+    name: 'Item 3',
   },
   {
     icon: <BsBuilding size='22'/>,

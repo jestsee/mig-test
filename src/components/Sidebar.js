@@ -15,7 +15,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className="md:hidden m-0 p-o fixed h-16 top-0 left-0 w-full bg-primary shadow-lg flex justify-between px-5 py-[1.2rem] rounded-b-sm">
+      <div className="md:hidden m-0 p-o fixed h-16 top-0 left-0 w-full bg-primary shadow-lg flex justify-between px-5 py-[1.2rem] rounded-b-sm z-10">
         <h1 className="text-white text-lg font-semibold">Company Name</h1>
         <i className="text-white cursor-pointer" onClick={barsHandler}>
           {barsClicked ? <FaTimes size='28'/> : <FaBars size="28" />}
@@ -29,6 +29,7 @@ export default function Sidebar() {
             <SideBarIcon
               key={index}
               icon={item.icon}
+              name={item.name}
               to={item.to}
               onClick={() => setSelectedId(index)}
               className={
@@ -42,11 +43,14 @@ export default function Sidebar() {
   );
 }
 
-const SideBarIcon = ({ icon, to, onClick, className }) => {
+const SideBarIcon = ({ icon, to, onClick, className, name }) => {
   return (
-    <li>  
+    <li className="flex">  
       <Link to={to ?? "#"} className={className} onClick={onClick}>
-        {icon}
+        <div className="my-5 flex">
+          <i className="md:block mr-2">{icon}</i>
+          <p className="md:hidden">{name}</p>
+        </div>
       </Link>
     </li>
   );
